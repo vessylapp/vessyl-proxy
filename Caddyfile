@@ -1,0 +1,8 @@
+{
+    # Email to use for Let's Encrypt notifications
+    email youremail@example.com
+}
+
+http:// {
+    respond "Vessyl Proxy running!"
+}

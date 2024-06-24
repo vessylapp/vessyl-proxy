@@ -1,0 +1,18 @@
+{
+  "name": "vessyl-proxy",
+  "version": "0.0.1",
+  "main": "index.js",
+  "scripts": {
+    "start": "node .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "vessylapp",
+  "license": "ISC",
+  "description": "Proxy server for Vessyl API and resources",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "child_process": "^1.0.2",
+    "express": "^4.19.2",
+    "fs": "^0.0.1-security"
+  }
+}
