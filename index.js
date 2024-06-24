@@ -20,7 +20,6 @@ ${domain} {
 `;
 
     console.log(caddyConfig);
-    return;
 
     const configFilePath = '/etc/caddy/Caddyfile';
 
