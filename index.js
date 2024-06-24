@@ -28,7 +28,7 @@ ${domain} {
             return res.status(500).json({ error: 'Failed to write Caddy config file' });
         }
 
-        exec('sudo caddy reload --config /etc/caddy/Caddyfile', (err, stdout, stderr) => {
+        exec('caddy reload --config /etc/caddy/Caddyfile', (err, stdout, stderr) => {
             if (err) {
                 return res.status(500).json({ error: 'Failed to reload Caddy', details: stderr });
             }
