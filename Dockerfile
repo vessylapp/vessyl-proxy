@@ -13,4 +13,4 @@ COPY . .
 EXPOSE 80
 EXPOSE 443
 
-CMD ["sh", "-c", "caddy start --config /etc/caddy/Caddyfile"]
+CMD ["sh", "-c", "caddy fmt --overwrite && caddy start --config /etc/caddy/Caddyfile"]
