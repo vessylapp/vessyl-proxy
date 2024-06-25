@@ -1,6 +1,6 @@
 FROM node:20-alpine
 
-RUN apk add --no-cache caddy
+RUN apk add --no-cache caddy curl
 
 WORKDIR /app
 
@@ -13,4 +13,6 @@ COPY . .
 EXPOSE 80
 EXPOSE 443
 
-CMD ["sh", "-c", "caddy fmt --overwrite && caddy start --config /etc/caddy/Caddyfile"]
+CMD ["sh", "-c", "node index.js"]
+
+#CMD ["sh", "-c", "caddy fmt --overwrite && caddy start --config /etc/caddy/Caddyfile"]

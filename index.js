@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const fs = require('fs');
 const { exec } = require('child_process');
+const child_process = require("node:child_process");
 
 const app = express();
 app.use(bodyParser.json());
@@ -84,6 +85,27 @@ app.post('/delete', (req, res) => {
 });
 
 const PORT = process.env.PORT || 4040;
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+// app.listen(PORT, () => {
+//     console.log(`Server is running on port ${PORT}`);
+// });
+
+// read /etc/caddy/Caddyfile and send it to the client
+fs.readFile('/etc/caddy/Caddyfile', 'utf8', (err, data) => {
+    if (err) {
+        console.error(err);
+        return;
+    }
+    console.log(data);
+    // start the server and caddy
+    child_process.exec('caddy run --config /etc/caddy/Caddyfile', (err, stdout, stderr) => {
+        if (err) {
+            console.error(err);
+            return;
+        }
+        console.log(stdout);
+        console.error(stderr);
+    });
+    app.listen(PORT, () => {
+        console.log(`Server is running on port ${PORT}`);
+    });
 });
