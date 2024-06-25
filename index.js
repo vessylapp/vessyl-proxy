@@ -109,3 +109,9 @@ fs.readFile('/etc/caddy/Caddyfile', 'utf8', (err, data) => {
         console.log(`Server is running on port ${PORT}`);
     });
 });
+
+process.on('SIGTERM', () => {
+    console.log('Received SIGTERM. Shutting down gracefully...');
+
+    process.exit(0);
+});
