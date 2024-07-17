@@ -106,6 +106,9 @@ async function startCaddy() {
         const allResources = await resources.find({}).toArray();
         let config = [];
         allResources.forEach(resource => {
+            if(resource.domain === undefined || resource.domain === null || resource.domain === "") {
+                return;
+            )
             config.push({
                 domain: resource.domain,
                 port: resource.ports[0].split(':')[0]
