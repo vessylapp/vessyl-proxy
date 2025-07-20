@@ -121,6 +121,7 @@ async function startCaddy() {
             gateway = child_process.execSync("ip route | grep default | awk '{print $3}'").toString().trim();
         } catch (e) {
             console.error('Failed to get gateway IP');
+            process.exit(1);
         }
 
         // write to /etc/caddy/Caddyfile
@@ -154,11 +155,13 @@ async function startCaddy() {
         fs.writeFile(configFilePath, caddyConfig, (err) => {
             if (err) {
                 console.error('Failed to write Caddy config file');
+                process.exit(1);
             }
 
             exec('caddy run --config /etc/caddy/Caddyfile', (err, stdout, stderr) => {
                 if (err) {
                     console.error('Failed to reload Caddy', stderr);
+                    process.exit(1);
                 }
 
                 console.log('Caddy configuration added and reloaded successfully');
